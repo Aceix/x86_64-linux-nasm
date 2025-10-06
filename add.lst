@@ -1,0 +1,46 @@
+     1                                  
+     2                                  ;; hello world program
+     3                                  
+     4                                  section .data
+     5                                    EXIT_SUCCESS equ 0
+     6                                    SYS_EXIT     equ 60
+     7                                  
+     8 00000000 11                        bVar1   db  17
+     9 00000001 09                        bVar2   db  9
+    10 00000002 00                        bResult db  0
+    11                                  
+    12 00000003 6842                      wVar1   dw  17000
+    13 00000005 2823                      wVar2   dw  9000
+    14 00000007 0000                      wResult dw  0
+    15                                  
+    16 00000009 40660301                  dVar1   dd  17000000
+    17 0000000D 40548900                  dVar2   dd  9000000
+    18 00000011 00000000                  dResult dd  0
+    19                                  
+    20 00000015 80FE210A00000000          qVar1   dq  170000000
+    21 0000001D 804A5D0500000000          qVar2   dq  90000000
+    22 00000025 0000000000000000          qResult dq  0
+    23                                  
+    24                                  section .text
+    25                                  global _start
+    26                                  _start:
+    27 00000000 8A0425[00000000]          mov al, byte [bVar1]
+    28 00000007 020425[01000000]          add al, byte [bVar2]
+    29 0000000E 880425[02000000]          mov byte [bResult], al
+    30                                  
+    31 00000015 668B0425[03000000]        mov ax, word [wVar1]
+    32 0000001D 66030425[05000000]        add ax, word [wVar2]
+    33 00000025 66890425[07000000]        mov word [wResult], ax
+    34                                  
+    35 0000002D 8B0425[09000000]          mov eax, dword [dVar1]
+    36 00000034 030425[0D000000]          add eax, dword [dVar2]
+    37 0000003B 890425[11000000]          mov dword [dResult], eax
+    38                                  
+    39 00000042 488B0425[15000000]        mov rax, qword [qVar1]
+    40 0000004A 48030425[1D000000]        add rax, qword [qVar2]
+    41 00000052 48890425[25000000]        mov qword [qResult], rax
+    42                                  
+    43                                  last:
+    44 0000005A B83C000000                mov rax, SYS_EXIT
+    45 0000005F BF00000000                mov rdi, EXIT_SUCCESS
+    46 00000064 0F05                      syscall
