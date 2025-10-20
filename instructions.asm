@@ -38,7 +38,7 @@ _start:
   ; cannot movzx into memory. only registers are allowed
   ; movzx dword [padding], ax
 
-  movzx rax, byte [padding] ; zeros out rax because when the OS reserves space for "padding", it initialises to zero
+  movzx rax, byte [rel padding] ; zeros out rax because when the OS reserves space for "padding", it initialises to zero
   mov   bl,  3              ; prepare register
   movzx rax, bl             ; move and extend upper bits with zero
 
